@@ -1,0 +1,28 @@
+import torch
+import torch.nn as nn
+
+# Define dummy generator and label embedding for illustration
+class DummyGenerator(nn.Module):
+    def __init__(self):
+        super(DummyGenerator, self).__init__()
+        self.fc = nn.Sequential(
+            nn.Linear(100 + 50, 784),
+            nn.Tanh()
+        )
+    
+    def forward(self, x):
+        return self.fc(x)
+
+# Instantiate generator and label embedding
+generator = DummyGenerator()
+label_embed = nn.Embedding(10, 50)
+
+# Generate one digit for each class 0–9
+for digit in range(10):
+    noise = torch.randn(1, 100)
+    label = torch.tensor([digit])
+    label_vec = label_embed(label)
+    input_vector = torch.cat((noise, label_vec), dim=1)
+    generated_digit = generator(input_vector)
+
+    print(f"Digit {digit} generated with shape: {generated_digit.shape}")

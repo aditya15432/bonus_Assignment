@@ -1,0 +1,10 @@
+from transformers import pipeline
+
+# Load pipeline with a different model
+qa_pipeline = pipeline("question-answering", model="deepset/roberta-base-squad2")
+
+context = "Charles Babbage is considered the father of the computer."
+question = "Who is considered the father of the computer?"
+
+result = qa_pipeline(question=question, context=context)
+print(result)

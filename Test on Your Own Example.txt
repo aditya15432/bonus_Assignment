@@ -1,0 +1,22 @@
+from transformers import pipeline
+
+# Load question-answering pipeline
+qa_pipeline = pipeline("question-answering")
+
+# Define your own context
+context = (
+    "The James Webb Space Telescope was launched by NASA in December 2021. "
+    "It is designed to explore the universe in infrared and provide deeper insights than Hubble."
+)
+
+# Question 1
+question1 = "When was the James Webb Space Telescope launched?"
+result1 = qa_pipeline(question=question1, context=context)
+
+# Question 2
+question2 = "Which organization launched the James Webb Space Telescope?"
+result2 = qa_pipeline(question=question2, context=context)
+
+# Display results
+print("Q1:", result1)
+print("Q2:", result2)

@@ -1,0 +1,12 @@
+from transformers import pipeline
+
+# Load default question-answering pipeline
+qa_pipeline = pipeline("question-answering")
+
+# Provide context and question
+context = "Charles Babbage is considered the father of the computer."
+question = "Who is considered the father of the computer?"
+
+# Run the QA pipeline
+result = qa_pipeline(question=question, context=context)
+print(result)
